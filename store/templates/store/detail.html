@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h2> {{ product.name }}</h2>
+    <h3> $ {{ product.price }}</h3>
+    <img src=" {{ product.image.url }}" alt=" {{ product.name }}" style="max-width:250px ;">
+    <p> {{ product.desciption }}</p>
+    <p> {{ product.stock }} en stock</p>
+    <!--ne pas afficher le panier si l'utilisateur n'est pas connecté-->
+    {% if user.is_authenticated %}
+    <!-- ajout du panier-->
+    <p>
+        <a href="{% url 'add-to-cart' product.slug %}">Ajouter dans le panier</a>
+    </p>
+    {% endif %}
+
+{% endblock %}
